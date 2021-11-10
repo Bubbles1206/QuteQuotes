@@ -58,10 +58,12 @@ class _QuoteListScreenState extends State<QuoteListScreen> {
           _buildUI(viewModel)
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton.extended(
         onPressed: () => _addQuoteButton(viewModel.quotes.length),
         tooltip: 'Add Quote',
-        child: const Icon(Icons.add),
+        label: const Text("Add Quote"),
+        icon: const Icon(Icons.add),
+        // child: const Text("+ Add a Quote"),
       ),
     );
     // body: const Text("Quotes will be displayed here"));
