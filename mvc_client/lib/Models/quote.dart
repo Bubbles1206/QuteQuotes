@@ -1,6 +1,15 @@
 class Quote {
   late String text;
   late String name;
+  late int id;
+
+  int getId() {
+    return id;
+  }
+
+  void setId(int id) {
+    this.id = id;
+  }
 
   String getText() {
     return text;
@@ -18,8 +27,8 @@ class Quote {
     name = author;
   }
 
-  Quote create(String text, String name) {
-    Quote quote = Quote(name: name, text: text);
+  Quote create(String text, String name, int id) {
+    Quote quote = Quote(name: name, text: text, id: id);
     quote.setText(text);
     quote.setName(name);
     return quote;
@@ -28,10 +37,12 @@ class Quote {
   Quote({
     required this.text,
     required this.name,
+    required this.id,
   });
 
   factory Quote.fromJson(Map<String, dynamic> json) {
     return Quote(
+      id: json['id'],
       text: json['text'],
       name: json['name'],
     );

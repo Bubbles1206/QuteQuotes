@@ -11,14 +11,25 @@ class QuoteListViewModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> addQuote(
-      BuildContext context, Quote quote, String ip, String port, int lengthOfQuotes) async {
+  Future<void> addQuote(BuildContext context, Quote quote, String ip,
+      String port, int lengthOfQuotes) async {
     http.addQuote(quote, ip, port, context, lengthOfQuotes);
+    notifyListeners();
+  }
+
+  Future<void> deleteQuote(
+      BuildContext context, Quote quote, String ip, String port) async {
+    http.deleteQuote(quote, ip, port, context);
     notifyListeners();
   }
 
   void addToList(Quote quote) {
     quotes.add(QuoteViewModel(quote: quote));
+    notifyListeners();
+  }
+
+  void removeFromList(Quote quote) {
+    quotes.removeWhere((element) => element.quote.id == quote.id);
     notifyListeners();
   }
 }

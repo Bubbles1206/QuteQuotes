@@ -27,7 +27,7 @@ class _QuoteListScreenState extends State<QuoteListScreen> {
     if (viewModel.quotes.isEmpty) {
       return const Align(child: Text("No Quotes Found"));
     } else {
-      return QuoteList(quotes: viewModel.quotes);
+      return QuoteList(quotes: viewModel.quotes, ip: widget.ipAddress, port: widget.port,);
     }
   }
 

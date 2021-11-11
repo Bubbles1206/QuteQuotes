@@ -111,6 +111,7 @@ class _CreateQuoteState extends State<CreateQuote> {
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       _quote = Quote(
+                          id: widget.numberOfQuotes + 1,
                           text: _controller.value.text,
                           name: _controllerAuthor.value.text);
                       Provider.of<QuoteListViewModel>(context, listen: false)

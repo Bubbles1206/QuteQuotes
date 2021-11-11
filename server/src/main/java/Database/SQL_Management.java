@@ -82,6 +82,21 @@ public class SQL_Management{
         }
     }
 
+    public static void delete(String name, String text, int id) {
+
+        String sql2 = "DELETE FROM Quotes\n" +
+                "             WHERE ID = ? ";
+
+
+        try (Connection conn = connect();
+             PreparedStatement preSTMT = conn.prepareStatement(sql2)){
+            preSTMT.setInt(1, id);
+            preSTMT.executeUpdate();
+        } catch (SQLException ex){
+            System.out.println(ex.getMessage());
+        }
+    }
+
 
     public static List<Quote> all() {
         return getQuotes();
@@ -90,5 +105,9 @@ public class SQL_Management{
     public static Quote add(Quote quote) {
         insert(quote.getName(), quote.getText());
         return quote;
+    }
+
+    public static void remove(Quote quote){
+        delete(quote.getName(), quote.getText(), quote.getId());
     }
 }

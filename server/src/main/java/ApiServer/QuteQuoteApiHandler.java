@@ -34,4 +34,17 @@ public class QuteQuoteApiHandler {
         context.status(HttpCode.CREATED);
         context.json(newQuote);
     }
+
+    /**
+     * delete an existing quote
+     *
+     * @param context The Javalin Context for the HTTP POST Request
+     */
+    public static void delete(Context context) {
+        //        System.out.println(context.body());
+                Quote quote = context.bodyAsClass(Quote.class);
+                SQL_Management.remove(quote);
+                context.status(HttpCode.ACCEPTED);
+                context.json("Quote has been deleted");
+            }
 }

@@ -35,6 +35,17 @@ Future<void> addQuote(Quote quote, String ip, String port, BuildContext context,
   }
 }
 
+Future<void> deleteQuote(Quote quote, String ip, String port, BuildContext context) async {
+  var uri = Uri.parse("http://" + ip + ":" + port + "/remove");
+  Response res = await post(uri,
+      body: "{\"id\": ${quote.id} },\"name\": \"${quote.name}\", \"text\": \"${quote.text}\"}");
+  if (res.statusCode == 202) {
+    Provider.of<QuoteListViewModel>(context, listen: false).removeFromList(quote);
+  } else {
+    throw "Error removing quote";
+  }
+}
+
 Map toMap(String name, String text) {
   var map = {};
   map["name"] = name;

@@ -16,6 +16,7 @@ public class QuteQuotesServer {
         this.server.get("/quotes", context -> QuteQuoteApiHandler.getAll(context));
 //        this.server.get("/quote/{id}", context -> QuteQuoteApiHandler.getOne(context));
         this.server.post("/quotes", context -> QuteQuoteApiHandler.create(context));
+        this.server.post("/remove", context -> QuteQuoteApiHandler.delete(context));
     }
 
     public static void main(String[] args) throws UnknownHostException {

@@ -5,8 +5,10 @@ import 'package:mvc_client/Views/display_quote_screen.dart';
 // ignore: must_be_immutable
 class QuoteList extends StatelessWidget {
   late List<QuoteViewModel> quotes;
+  final String ip;
+  final String port;
 
-  QuoteList({Key? key, required this.quotes}) : super(key: key);
+  QuoteList({Key? key, required this.quotes, required this.ip, required this.port}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,11 @@ class QuoteList extends StatelessWidget {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => DisplayQuote(quote: quote.quote)));
+                      builder: (context) => DisplayQuote(
+                            quote: quote.quote,
+                            ipAdress: ip,
+                            port: port,
+                          )));
             },
           );
         });
